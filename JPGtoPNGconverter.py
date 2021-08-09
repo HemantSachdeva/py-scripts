@@ -1,10 +1,21 @@
+#!/usr/bin/env python3
+
 import sys
 import os
-from PIL import Image
+# Project did not have requirements, explicitly check for each import.
+try:
+    from PIL import Image
+except Exception as E:
+    print(f"Error while importing Image from PIL\n\n{E}")
+    exit(1)
 
-# grab first and second argument
-image_folder = sys.argv[1]
-out_folder = sys.argv[2]
+# Check first and second args
+try:
+    image_folder = sys.argv[1]
+    out_folder = sys.argv[2]
+except:
+    print("Please input argument before proceeding")
+    sys.exit(1)
 
 # create out/ if does not exists
 if not os.path.exists(out_folder):
