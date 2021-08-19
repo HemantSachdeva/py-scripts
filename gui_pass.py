@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-from appJar import gui
+
+try:
+    from appJar import gui
+except ImportError:
+    print("Module not found: appJar")
+    exit(1)
 
 
 def press(btn):
