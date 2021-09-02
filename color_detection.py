@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 try:
     from collections import deque
     import imutils
@@ -7,8 +8,7 @@ try:
     import argparse
     import numpy as np
 except ImportError:
-    print("Cannot import modules. Install them.")
-    exit(0)
+    sys.exit("Cannot import modules. Install them.")
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", help="path to the (optional) video file")

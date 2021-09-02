@@ -6,7 +6,7 @@ try:
     import PyPDF2
 except Exception as E:
     print(f"Error while importing Image from PIL\n\n{E}")
-    exit(1)
+    sys.exit(1)
 
 try:
     inputs = sys.argv[1:]

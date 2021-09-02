@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
+import sys
 categories = {
     1: 'Programming',
     2: 'Misc',
@@ -52,7 +53,7 @@ if not blacklist[flag] == None:
     api_url = api_url + "&blacklistFlags={blacklist[flag]}"
 
 if not (200 <= resp.status_code < 300):
-    exit(print("Cannot connect to server"))
+    sys.exit("Cannot connect to server")
 resp = resp.json()
 if resp.get("type") == 'single':
     print(resp.get("joke"))

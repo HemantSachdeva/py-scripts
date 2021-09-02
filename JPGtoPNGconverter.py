@@ -7,7 +7,7 @@ try:
     from PIL import Image
 except Exception as E:
     print(f"Error while importing Image from PIL\n\n{E}")
-    exit(1)
+    sys.exit(1)
 
 # Check first and second args
 try:

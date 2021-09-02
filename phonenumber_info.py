@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
+import sys
 try:
     import phonenumbers as p
     from phonenumbers import timezone, carrier, geocoder
 except ImportError:
     print("Please install phonenumbers module")
-    exit(1)
+    sys.exit(1)
 
 number = input("Enter phone number [with country code]: ")
 number = p.parse(number, "US")

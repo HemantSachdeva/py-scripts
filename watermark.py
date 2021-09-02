@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
+import sys
 try:
     import cv2
     import numpy as np
 except ImportError:
     print("Couldn't import modules")
-    exit(1)
+    sys.exit(1)
 
 # read image
 img = cv2.imread('img/pic.jpg')
