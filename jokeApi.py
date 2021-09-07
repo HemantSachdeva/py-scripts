@@ -32,11 +32,12 @@ while category := input("Enter a joke category[1-6]: "):
         print('Invalid input')
         continue
     break
+print(f"You chose {categories[category]} type to tell a joke about.\n")
 
 for key, values in blacklist.items():
     print(f"{key}. {values.capitalize()}")
 
-while flag := input("\nBlacklist anything?[1-7]: "):
+while flag := input("Blacklist anything?[1-7]: "):
     if not flag.isdigit():
         print("Invalid input")
         continue
@@ -46,6 +47,9 @@ while flag := input("\nBlacklist anything?[1-7]: "):
         print('Invalid input')
         continue
     break
+
+print(f"You chose {blacklist[flag]} type not to show up.")
+
 api_url = "https://v2.jokeapi.dev/joke/{}".format(categories[category])
 resp = requests.get(api_url)
 
@@ -55,6 +59,9 @@ if not blacklist[flag].capitalize() == 'None':
 if not (200 <= resp.status_code < 300):
     sys.exit("Cannot connect to server")
 resp = resp.json()
+
+print("\t\t\t--------JOKE--------")
+
 if resp.get("type") == 'single':
     print(resp.get("joke"))
 else:
