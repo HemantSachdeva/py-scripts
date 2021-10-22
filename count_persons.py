@@ -95,11 +95,7 @@ def detectByPathImage(path):
 def humanDetector(args):
     image_path = args["image"]
     video_path = args['video']
-    if str(args["camera"]) == 'true':
-        camera = True
-    else:
-        camera = False
-
+    camera = True if str(args["camera"]) == 'true' else False
     writer = None
     if camera:
         print('[INFO] Opening Web Cam.')
