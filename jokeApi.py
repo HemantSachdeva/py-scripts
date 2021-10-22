@@ -28,7 +28,7 @@ while category := input("Enter a joke category[1-6]: "):
         continue
 
     category = int(category)
-    if not (0 < category < 7):
+    if not 0 < category < 7:
         print('Invalid input')
         continue
     break
@@ -43,7 +43,7 @@ while flag := input("Blacklist anything?[1-7]: "):
         continue
 
     flag = int(flag)
-    if not (0 < flag < 8):
+    if not 0 < flag < 8:
         print('Invalid input')
         continue
     break
@@ -56,7 +56,7 @@ resp = requests.get(api_url)
 if not blacklist[flag].capitalize() == 'None':
     api_url = api_url + "&blacklistFlags={blacklist[flag]}"
 
-if not (200 <= resp.status_code < 300):
+if not 200 <= resp.status_code < 300:
     sys.exit("Cannot connect to server")
 resp = resp.json()
 
