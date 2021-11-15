@@ -52,9 +52,6 @@ def parse_html(html_text):
 
         df = pd.DataFrame(table_data, columns=header_cells_text)
         df.to_csv("scrapped_table.csv", index=False)
-    else:
-        print("[!] Error parsing table")
-        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -70,4 +67,3 @@ if __name__ == "__main__":
         print("[+] Scrapped data saved in scrapped_table.csv")
     else:
         print("[!] Unable to parse data")
-        sys.exit(1)
