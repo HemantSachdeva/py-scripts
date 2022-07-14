@@ -16,8 +16,6 @@
  """
 
 
-from pprint import pprint
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -34,20 +32,21 @@ driver = webdriver.Chrome(service=Service(
 driver.get(
     'https://phet.colorado.edu/en/simulations/filter?subjects=physics&type=html,prototype')
 
-texts = list()
+titles = list()
 for element in driver.find_elements(By.CLASS_NAME, 'title'):
     text = element.text
-    texts.append(text)
+    titles.append(text)
 
-links = list()
+embed_urls = list()
 for element in driver.find_elements(By.CSS_SELECTOR, 'a.tile'):
     link = element.get_attribute('href')
     link = link.replace('/en/simulations/', '/sims/html/') + \
         '/latest/' + link.split('/')[-1] + '_en.html'
-    links.append(link)
+    embed_urls.append(link)
 
 data = dict()
-for i in range(len(texts)):
-    data[f'{texts[i]}'] = links[i]
-
-pprint(data)
+for i in range(len(titles)):
+    data[i] = {
+        'title': titles[i],
+        'embed_url': embed_urls[i]
+    }
