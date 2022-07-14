@@ -29,30 +29,43 @@ option.add_argument('--headless')  # Don't show the browser window
 driver = webdriver.Chrome(service=Service(
     ChromeDriverManager().install()), options=option)
 
-driver.get(
-    'https://phet.colorado.edu/en/simulations/filter?subjects=physics&type=html,prototype')
 
-titles = list()
-for element in driver.find_elements(By.CLASS_NAME, 'title'):
-    text = element.text
-    titles.append(text)
+def get_phet_data(topic):
 
-embed_urls = list()
-for element in driver.find_elements(By.CSS_SELECTOR, 'a.tile'):
-    link = element.get_attribute('href')
-    link = link.replace('/en/simulations/', '/sims/html/') + \
-        '/latest/' + link.split('/')[-1] + '_en.html'
-    embed_urls.append(link)
+    driver.get(
+        f'https://phet.colorado.edu/en/simulations/filter?subjects={topic}&type=html,prototype')
 
-thumbnail_urls = list()
-for element in driver.find_elements(By.CSS_SELECTOR, 'img.thumbnail'):
-    link = element.get_attribute('src')
-    thumbnail_urls.append(link)
+    titles = list()
+    for element in driver.find_elements(By.CLASS_NAME, 'title'):
+        text = element.text
+        titles.append(text)
 
-data = dict()
-for i in range(len(titles)):
-    data[i] = {
-        'title': titles[i],
-        'thumbnail_url': thumbnail_urls[i],
-        'embed_url': embed_urls[i]
-    }
+    embed_urls = list()
+    for element in driver.find_elements(By.CSS_SELECTOR, 'a.tile'):
+        link = element.get_attribute('href')
+        link = link.replace('/en/simulations/', '/sims/html/') + \
+            '/latest/' + link.split('/')[-1] + '_en.html'
+        embed_urls.append(link)
+
+    thumbnail_urls = list()
+    for element in driver.find_elements(By.CSS_SELECTOR, 'img.thumbnail'):
+        link = element.get_attribute('src')
+        thumbnail_urls.append(link)
+
+    data = dict()
+    for i in range(len(titles)):
+        data[i] = {
+            'title': titles[i],
+            'thumbnail_url': thumbnail_urls[i],
+            'embed_url': embed_urls[i]
+        }
+
+    driver.quit()
+    return data
+
+
+if '__main__' == __name__:
+    topic = 'math'
+    data = get_phet_data(topic)
+    print('Scraping Done')
+    exit(0)
