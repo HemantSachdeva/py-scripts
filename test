@@ -1,0 +1,29 @@
+<li role="listitem"><a class="tile grid" href="/en/simulations/build-an-atom" tabindex="-1">
+        <div class="image-holder"><img class="thumbnail" width="210" height="140"
+                src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom-420.png"
+                data-src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom-420.png" alt=""></div>
+        <div class="information">
+            <div class="title-holder"><span class="title">Build an Atom</span></div>
+            <div class="icons">
+                <div class="badge-holder  "><svg class="badge" version="1.1" x="0px" y="0px" width="25px" height="25px"
+                        viewBox="0 0 25 25" enable-background="new 0 0 25 25" role="img"
+                        aria-describedby="badge-tooltip-407">
+                        <title>HTML5</title>
+                        <g>
+                            <g>
+                                <g>
+                                    <path
+                                        d="M25,23c0,1.1-0.9,2-2,2H2c-1.1,0-2-0.9-2-2V2c0-1.1,0.9-2,2-2h21c1.1,0,2,0.9,2,2V23z">
+                                    </path>
+                                </g>
+                                <g>
+                                    <path fill="#FFFFFF" d="M21.3,2.5L19.7,20.479L12.476,22.5l-7.177-2.021L3.7,2.5H21.3z M18.026,6.174H6.976l0.588,6.677h7.649
+ l-0.273,2.851l-2.464,0.662l-2.45-0.662l-0.161-1.75H7.675l0.275,3.477l4.525,1.248h0.049v-0.012l4.487-1.236l0.628-6.803H9.586
+ L9.4,8.362h8.425L18.026,6.174z"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg></div>
+            </div>
+        </div>
+    </a></li>
