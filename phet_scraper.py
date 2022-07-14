@@ -15,7 +15,10 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  """
 
+import os
 
+from dotenv import load_dotenv
+from mysql.connector import connect
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -64,8 +67,30 @@ def get_phet_data(topic):
     return data
 
 
+def insert_phet_data_into_db(topic, data):
+    load_dotenv()
+    connection = connect(user=os.getenv('USERNAME'),
+                         host=os.getenv('HOSTNAME'),
+                         password=os.getenv('PASSWORD'),
+                         database=os.getenv('DB'))
+    cursor = connection.cursor()
+
+    slug_id = int
+    cursor.execute(f'SELECT id FROM topic WHERE slug = "{topic}"')
+    for row in cursor:
+        slug_id = row[0]
+    for value in data.values():
+        cursor.execute(
+            f'INSERT INTO simulations (topic_id, title, thumbnail_url, embed_url) VALUES ({slug_id}, "{value["title"]}", "{value["thumbnail_url"]}", "{value["embed_url"]}")')
+    connection.commit()
+    connection.close()
+
+
 if '__main__' == __name__:
     topic = 'math'
     data = get_phet_data(topic)
+    driver.quit()
     print('Scraping Done')
+    insert_phet_data_into_db(topic, data)
+    print('Inserting Done')
     exit(0)
