@@ -81,7 +81,14 @@ def insert_phet_data_into_db(topic, data):
         slug_id = row[0]
     for value in data.values():
         cursor.execute(
-            f'INSERT INTO simulations (topic_id, title, thumbnail_url, embed_url) VALUES ({slug_id}, "{value["title"]}", "{value["thumbnail_url"]}", "{value["embed_url"]}")')
+            f'SELECT id FROM simulations WHERE title = "{value["title"]}"')
+        if cursor.fetchall():
+            cursor.execute(
+                f'UPDATE simulations SET thumbnail_url = "{value["thumbnail_url"]}", embed_url = "{value["embed_url"]}" where title = "{value["title"]}"')
+        else:
+            cursor.execute(
+                f'INSERT INTO simulations (topic_id, title, thumbnail_url, embed_url) VALUES ({slug_id}, "{value["title"]}", "{value["thumbnail_url"]}", "{value["embed_url"]}")')
+
     connection.commit()
     connection.close()
 
