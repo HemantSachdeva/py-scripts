@@ -44,9 +44,15 @@ for element in driver.find_elements(By.CSS_SELECTOR, 'a.tile'):
         '/latest/' + link.split('/')[-1] + '_en.html'
     embed_urls.append(link)
 
+thumbnail_urls = list()
+for element in driver.find_elements(By.CSS_SELECTOR, 'img.thumbnail'):
+    link = element.get_attribute('src')
+    thumbnail_urls.append(link)
+
 data = dict()
 for i in range(len(titles)):
     data[i] = {
         'title': titles[i],
+        'thumbnail_url': thumbnail_urls[i],
         'embed_url': embed_urls[i]
     }
